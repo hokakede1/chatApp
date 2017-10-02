@@ -28,6 +28,7 @@ io.on("connection", function(socket){
     } else {
       mangUsers.push(data);
       socket.Username = data;
+      console.log(socket)
       socket.emit("SuccessLogin", data );
       io.sockets.emit("Userlist", mangUsers);
     }
@@ -43,6 +44,7 @@ io.on("connection", function(socket){
   });
 
   socket.on("user-send-message", function(data){
+    console.log(socket.Username)
     io.sockets.emit("server-send-message", {un: socket.Username, nd: data});
   })
 
